@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.ShoppingList" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <!-- Tema de pornire: afișată de sistem până când MainActivity eliberează splash-ul. -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#F7F8FA</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground_logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.ShoppingList</item>
+    </style>
+</resources>
