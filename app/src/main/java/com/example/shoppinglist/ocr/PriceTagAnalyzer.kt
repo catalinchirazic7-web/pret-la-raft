@@ -9,11 +9,12 @@ import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 
 /**
- * Rulează OCR pe fiecare cadru și transmite prețul ales de [PriceTagSelector] (sau null).
+ * Rulează OCR pe fiecare cadru și transmite prețul ales de [PriceTagSelector]
+ * împreună cu denumirea sugerată de [TitleExtractor].
  * Apelat pe executorul de analiză al CameraX.
  */
 class PriceTagAnalyzer(
-    private val onResult: (PriceCandidate?) -> Unit,
+    private val onResult: (ScanResult) -> Unit,
 ) : ImageAnalysis.Analyzer {
 
     private val recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
@@ -48,7 +49,9 @@ class PriceTagAnalyzer(
         task
             .addOnSuccessListener { text ->
                 val lines = text.toOcrLines()
-                onResult(PriceTagSelector.select(lines) { box -> grid?.redFraction(box) ?: 0f })
+                val selection = PriceTagSelector.select(lines) { box -> grid?.redFraction(box) ?: 0f }
+                val title = selection?.let { TitleExtractor.extract(lines, it.line) }
+                onResult(ScanResult(price = selection?.candidate, title = title))
             }
             .addOnFailureListener { e -> Log.w(TAG, "OCR a eșuat pe un cadru", e) }
             .addOnCompleteListener { imageProxy.close() }

@@ -15,6 +15,7 @@ import androidx.camera.view.PreviewView
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,31 +24,34 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.ui.text.input.KeyboardType
-import java.util.Locale
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -61,14 +65,18 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.example.shoppinglist.data.ShoppingItem
-import com.example.shoppinglist.ocr.PriceCandidate
+import com.example.shoppinglist.data.TargetStore
 import com.example.shoppinglist.ocr.PriceTagAnalyzer
+import com.example.shoppinglist.ocr.ScanResult
+import com.example.shoppinglist.ocr.StablePrice
 import com.example.shoppinglist.ui.common.formatLei
+import java.util.Locale
 import java.util.concurrent.Executors
 
 private const val TAG = "PriceScannerScreen"
@@ -81,7 +89,13 @@ fun PriceScannerScreen(
     val context = LocalContext.current
     val item by viewModel.item.collectAsState()
     val catalogPrice by viewModel.catalogPrice.collectAsState()
-    val detectedPrice by viewModel.detectedPrice.collectAsState()
+    val detected by viewModel.detected.collectAsState()
+    val cardOpen by viewModel.cardOpen.collectAsState()
+    val cardId by viewModel.cardId.collectAsState()
+    val sessionCount by viewModel.sessionCount.collectAsState()
+    val store by viewModel.store.collectAsState()
+    val cartTotal by viewModel.cartTotal.collectAsState()
+    val recentCart by viewModel.recentCart.collectAsState()
     val saveError by viewModel.saveError.collectAsState()
 
     var hasPermission by remember {
@@ -104,8 +118,6 @@ fun PriceScannerScreen(
             if (bound.cameraInfo.hasFlashUnit()) bound.cameraControl.enableTorch(torchOn)
         }
     }
-
-    var manualDialogOpen by rememberSaveable { mutableStateOf(false) }
 
     BackHandler(onBack = onClose)
 
@@ -141,89 +153,55 @@ fun PriceScannerScreen(
             Text("Înapoi", color = Color.White)
         }
 
-        ScannerPanel(
-            modifier = Modifier.align(Alignment.BottomCenter),
-            item = item,
-            catalogPrice = catalogPrice,
-            detectedPrice = detectedPrice,
-            cameraError = cameraError,
-            saveError = saveError,
-            hasFlash = hasFlash,
-            torchOn = torchOn,
-            onToggleTorch = { torchOn = !torchOn },
-            onSave = { detectedPrice?.let { viewModel.saveShelfPrice(it, onSaved = onClose) } },
-            onOpenManual = { manualDialogOpen = true },
-        )
-    }
+        Column(modifier = Modifier.align(Alignment.BottomCenter).fillMaxWidth()) {
+            ScannerPanel(
+                item = item,
+                catalogPrice = catalogPrice,
+                detected = detected,
+                cameraError = cameraError,
+                saveError = saveError,
+                hasFlash = hasFlash,
+                torchOn = torchOn,
+                onToggleTorch = { torchOn = !torchOn },
+                onOpenCard = viewModel::openCard,
+            )
+            LiveCartBar(
+                sessionCount = sessionCount,
+                store = store,
+                total = cartTotal,
+                recent = recentCart,
+                onSelectStore = viewModel::selectStore,
+                onGoToList = onClose,
+            )
+        }
 
-    if (manualDialogOpen) {
-        ManualPriceDialog(
-            initialPrice = detectedPrice,
-            onDismiss = { manualDialogOpen = false },
-            onConfirm = { price ->
-                manualDialogOpen = false
-                viewModel.saveShelfPrice(price, onSaved = onClose)
-            },
-        )
-    }
-}
-
-/** Dialog cu câmp numeric pentru prețul introdus manual, ex. "4.25" sau "4,25". */
-@Composable
-private fun ManualPriceDialog(
-    initialPrice: Double?,
-    onDismiss: () -> Unit,
-    onConfirm: (Double) -> Unit,
-) {
-    var text by rememberSaveable {
-        mutableStateOf(initialPrice?.let { String.format(Locale.US, "%.2f", it) } ?: "")
-    }
-    val parsed = parseManualPrice(text)
-    val showError = text.isNotBlank() && parsed == null
-
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text("Preț raft") },
-        text = {
-            Column {
-                OutlinedTextField(
-                    value = text,
-                    onValueChange = { text = it },
-                    label = { Text("Preț (lei), ex. 4.25") },
-                    singleLine = true,
-                    isError = showError,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-                    modifier = Modifier.fillMaxWidth(),
-                )
-                if (showError) {
-                    Text(
-                        text = "Introdu un preț între 0.01 și 9999.",
-                        color = MaterialTheme.colorScheme.error,
-                        style = MaterialTheme.typography.bodySmall,
+        if (cardOpen) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.5f))
+                    .clickable(onClick = {}),
+                contentAlignment = Alignment.Center,
+            ) {
+                key(cardId) {
+                    ConfirmationCard(
+                        initialTitle = detected?.title.orEmpty(),
+                        initialPrice = detected?.price?.let { String.format(Locale.US, "%.2f", it) }.orEmpty(),
+                        onRescan = viewModel::rescan,
+                        onConfirm = { title, price ->
+                            viewModel.confirm(title, price, onDone = onClose)
+                        },
                     )
                 }
             }
-        },
-        confirmButton = {
-            TextButton(
-                onClick = { parsed?.let(onConfirm) },
-                enabled = parsed != null,
-            ) {
-                Text("Salvează")
-            }
-        },
-        dismissButton = {
-            TextButton(onClick = onDismiss) {
-                Text("Anulează")
-            }
-        },
-    )
+        }
+    }
 }
 
 @Composable
 private fun CameraPreview(
     modifier: Modifier,
-    onFrameResult: (PriceCandidate?) -> Unit,
+    onFrameResult: (ScanResult) -> Unit,
     onCameraBound: (Camera) -> Unit,
     onCameraError: (String) -> Unit,
 ) {
@@ -238,7 +216,7 @@ private fun CameraPreview(
 
     DisposableEffect(lifecycleOwner) {
         val analysisExecutor = Executors.newSingleThreadExecutor()
-        val analyzer = PriceTagAnalyzer { candidate -> currentOnFrameResult(candidate) }
+        val analyzer = PriceTagAnalyzer { result -> currentOnFrameResult(result) }
         val providerFuture = ProcessCameraProvider.getInstance(context)
         var provider: ProcessCameraProvider? = null
         var disposed = false
@@ -332,29 +310,27 @@ private fun PermissionRequest(
 
 @Composable
 private fun ScannerPanel(
-    modifier: Modifier,
     item: ShoppingItem?,
     catalogPrice: Double?,
-    detectedPrice: Double?,
+    detected: StablePrice?,
     cameraError: String?,
     saveError: String?,
     hasFlash: Boolean,
     torchOn: Boolean,
     onToggleTorch: () -> Unit,
-    onSave: () -> Unit,
-    onOpenManual: () -> Unit,
+    onOpenCard: () -> Unit,
 ) {
+    val detectedPrice = detected?.price
     Surface(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxWidth()
-            .clip(androidx.compose.foundation.shape.RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)),
+            .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)),
         tonalElevation = 6.dp,
     ) {
         Column(
             modifier = Modifier
-                .windowInsetsPadding(WindowInsets.navigationBars)
-                .padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
+                .padding(horizontal = 20.dp, vertical = 12.dp),
+            verticalArrangement = Arrangement.spacedBy(6.dp),
         ) {
             AnimatedContent(targetState = detectedPrice, label = "detectedPrice") { price ->
                 Text(
@@ -365,7 +341,15 @@ private fun ScannerPanel(
                     },
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.clickable(enabled = price != null, onClick = onOpenManual),
+                    modifier = Modifier.clickable(enabled = price != null, onClick = onOpenCard),
+                )
+            }
+
+            detected?.title?.let { title ->
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
 
@@ -376,11 +360,7 @@ private fun ScannerPanel(
             item?.let { current ->
                 val reference = catalogPrice ?: current.estimatedPrice.takeIf { it > 0.0 }
                 Text(
-                    text = current.title,
-                    style = MaterialTheme.typography.titleMedium,
-                )
-                Text(
-                    text = "Estimat: ${reference?.formatLei() ?: "fără preț"}",
+                    text = "${current.title} · Estimat: ${reference?.formatLei() ?: "fără preț"}",
                     style = MaterialTheme.typography.bodyMedium,
                 )
                 if (detectedPrice != null && reference != null) {
@@ -388,22 +368,9 @@ private fun ScannerPanel(
                     val sign = if (difference > 0) "+" else ""
                     Text(
                         text = "Diferență: $sign${difference.formatLei()}",
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
-                }
-                Button(
-                    onClick = onSave,
-                    enabled = detectedPrice != null,
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Text("Salvează prețul la raft")
-                }
-                OutlinedButton(
-                    onClick = onOpenManual,
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Text("✏️ Introdu manual")
                 }
             }
 
@@ -411,12 +378,146 @@ private fun ScannerPanel(
                 Text(text = message, color = MaterialTheme.colorScheme.error)
             }
 
-            if (hasFlash) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                OutlinedButton(onClick = onOpenCard) {
+                    Text("✏️ Introdu manual")
+                }
+                if (hasFlash) {
+                    Spacer(modifier = Modifier.width(8.dp))
                     TextButton(onClick = onToggleTorch) {
                         Text(if (torchOn) "Lanternă: oprește" else "Lanternă: pornește")
                     }
                 }
+            }
+        }
+    }
+}
+
+/** Cardul de confirmare: denumirea și prețul pot fi corectate înainte de salvarea în coș. */
+@Composable
+private fun ConfirmationCard(
+    initialTitle: String,
+    initialPrice: String,
+    onRescan: () -> Unit,
+    onConfirm: (String, Double) -> Unit,
+) {
+    var title by rememberSaveable { mutableStateOf(initialTitle) }
+    var priceText by rememberSaveable { mutableStateOf(initialPrice) }
+    val price = parseManualPrice(priceText)
+    val titleValid = title.isNotBlank()
+
+    Surface(
+        modifier = Modifier.fillMaxWidth().padding(24.dp),
+        shape = RoundedCornerShape(20.dp),
+        tonalElevation = 8.dp,
+    ) {
+        Column(
+            modifier = Modifier.padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Text(
+                text = "Confirmă produsul",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+            )
+            OutlinedTextField(
+                value = title,
+                onValueChange = { title = it },
+                label = { Text("Denumire produs") },
+                singleLine = true,
+                isError = !titleValid,
+                modifier = Modifier.fillMaxWidth(),
+            )
+            OutlinedTextField(
+                value = priceText,
+                onValueChange = { priceText = it },
+                label = { Text("Preț (lei), ex. 4.25") },
+                singleLine = true,
+                isError = priceText.isNotBlank() && price == null,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                modifier = Modifier.fillMaxWidth(),
+            )
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedButton(onClick = onRescan, modifier = Modifier.weight(1f)) {
+                    Text("Rescanează")
+                }
+                Button(
+                    onClick = { price?.let { onConfirm(title.trim(), it) } },
+                    enabled = titleValid && price != null,
+                    modifier = Modifier.weight(1f),
+                ) {
+                    Text("Adaugă în coș")
+                }
+            }
+        }
+    }
+}
+
+/** Bara de jos cu totalul coșului pentru magazinul activ și ultimele produse adăugate. */
+@Composable
+private fun LiveCartBar(
+    sessionCount: Int,
+    store: TargetStore,
+    total: Double,
+    recent: List<ShoppingItem>,
+    onSelectStore: (TargetStore) -> Unit,
+    onGoToList: () -> Unit,
+) {
+    Surface(
+        modifier = Modifier.fillMaxWidth(),
+        color = Color(0xE6121417),
+        shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp),
+    ) {
+        Column(
+            modifier = Modifier
+                .windowInsetsPadding(WindowInsets.navigationBars)
+                .padding(horizontal = 20.dp, vertical = 12.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "$sessionCount articole în coș",
+                    color = Color.White,
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.weight(1f),
+                )
+                listOf(TargetStore.LIDL, TargetStore.PENNY).forEach { option ->
+                    FilterChip(
+                        selected = option == store,
+                        onClick = { onSelectStore(option) },
+                        label = { Text(option.displayName) },
+                    )
+                    Spacer(modifier = Modifier.width(6.dp))
+                }
+            }
+
+            Text(
+                text = "Total: ${total.formatLei()}",
+                color = Color.White,
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.ExtraBold,
+            )
+
+            if (recent.isNotEmpty()) {
+                Row(
+                    modifier = Modifier.horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    recent.forEach { product ->
+                        Text(
+                            text = "${product.title} · ${product.estimatedPrice.formatLei()}",
+                            color = Color.White.copy(alpha = 0.85f),
+                            style = MaterialTheme.typography.bodySmall,
+                            modifier = Modifier
+                                .background(Color.White.copy(alpha = 0.12f), RoundedCornerShape(8.dp))
+                                .padding(horizontal = 10.dp, vertical = 6.dp),
+                        )
+                    }
+                }
+            }
+
+            Button(onClick = onGoToList, modifier = Modifier.fillMaxWidth()) {
+                Text("Mergi la listă")
             }
         }
     }

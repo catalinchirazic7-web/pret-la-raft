@@ -13,6 +13,9 @@ class PriceTagSelectorTest {
     private fun line(text: String, height: Float, top: Int) =
         OcrLine(text = text, heightPx = height, box = PixelBox(0, top, 200, top + height.toInt()))
 
+    private fun selectedValue(lines: List<OcrLine>, redFraction: (PixelBox) -> Float): Double? =
+        PriceTagSelector.select(lines, redFraction)?.candidate?.value
+
     @Test
     fun pennyPrefersRedCardPrice() {
         val lines = listOf(
@@ -20,7 +23,7 @@ class PriceTagSelectorTest {
             line("7,49", 60f, 20),   // promo, pe fundal roșu
             line("8,99", 40f, 400),  // preț întreg, mai mic dar nu roșu
         )
-        assertEquals(7.49, PriceTagSelector.select(lines, redTop)!!.value, 0.001)
+        assertEquals(7.49, selectedValue(lines, redTop)!!, 0.001)
     }
 
     @Test
@@ -30,7 +33,7 @@ class PriceTagSelectorTest {
             line("4,25", 30f, 200),
             line("5,99", 60f, 400),
         )
-        assertEquals(5.99, PriceTagSelector.select(lines, noRed)!!.value, 0.001)
+        assertEquals(5.99, selectedValue(lines, noRed)!!, 0.001)
     }
 
     @Test
@@ -40,7 +43,17 @@ class PriceTagSelectorTest {
             line("9,99", 20f, 20),   // preț vechi, tăiat, mic
             line("6,99", 70f, 400),  // preț nou, font mare
         )
-        assertEquals(6.99, PriceTagSelector.select(lines, redTop)!!.value, 0.001)
+        assertEquals(6.99, selectedValue(lines, redTop)!!, 0.001)
+    }
+
+    @Test
+    fun selectionKeepsTheLineOfThePrice() {
+        val lines = listOf(
+            line("Lapte integral", 30f, 50),
+            line("6,49", 60f, 150),
+        )
+        val selection = PriceTagSelector.select(lines, noRed)
+        assertEquals("6,49", selection!!.line.text)
     }
 
     @Test
@@ -59,6 +72,6 @@ class PriceTagSelectorTest {
     @Test
     fun ignoresLinesWithoutBox() {
         val lines = listOf(OcrLine("3,29", 40f, null))
-        assertEquals(3.29, PriceTagSelector.select(lines, noRed)!!.value, 0.001)
+        assertEquals(3.29, selectedValue(lines, noRed)!!, 0.001)
     }
 }

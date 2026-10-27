@@ -10,8 +10,11 @@ data class OcrLine(val text: String, val heightPx: Float, val box: PixelBox?)
 
 enum class StoreHint { PENNY, LIDL }
 
+/** Prețul ales și linia de text din care a fost citit (folosită pentru a găsi denumirea). */
+data class PriceSelection(val candidate: PriceCandidate, val line: OcrLine)
+
 /**
- * Alege prețul de raft dintre mai multe candidați.
+ * Alege prețul de raft dintre mai mulți candidați.
  *
  * - Penny: cardul de preț promoțional este roșu, deci candidații din zone roșii au prioritate.
  * - Lidl: prețul vechi este tăiat și mai mic, iar prețul nou are fontul cel mai mare.
@@ -25,7 +28,7 @@ object PriceTagSelector {
 
     private data class Option(
         val candidate: PriceCandidate,
-        val heightPx: Float,
+        val line: OcrLine,
         val isRed: Boolean,
     )
 
@@ -41,13 +44,13 @@ object PriceTagSelector {
     /**
      * @param redFraction întoarce fracțiunea de pixeli roșii dintr-un dreptunghi al imaginii.
      */
-    fun select(lines: List<OcrLine>, redFraction: (PixelBox) -> Float): PriceCandidate? {
+    fun select(lines: List<OcrLine>, redFraction: (PixelBox) -> Float): PriceSelection? {
         val options = lines.flatMap { line ->
             val red = line.box?.let(redFraction) ?: 0f
             PriceParser.parse(line.text).map { candidate ->
                 Option(
                     candidate = candidate,
-                    heightPx = line.heightPx,
+                    line = line,
                     isRed = red >= RED_FRACTION_THRESHOLD,
                 )
             }
@@ -56,12 +59,12 @@ object PriceTagSelector {
 
         val chosen = when (storeHint(lines)) {
             StoreHint.LIDL -> options.maxWith(
-                compareBy<Option>({ it.heightPx }, { it.candidate.rank }),
+                compareBy<Option>({ it.line.heightPx }, { it.candidate.rank }),
             )
             StoreHint.PENNY, null -> options.maxWith(
-                compareBy<Option>({ it.isRed }, { it.heightPx }, { it.candidate.rank }),
+                compareBy<Option>({ it.isRed }, { it.line.heightPx }, { it.candidate.rank }),
             )
         }
-        return chosen.candidate
+        return PriceSelection(candidate = chosen.candidate, line = chosen.line)
     }
 }

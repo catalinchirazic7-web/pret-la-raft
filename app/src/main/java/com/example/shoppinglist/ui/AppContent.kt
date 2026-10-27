@@ -36,12 +36,14 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.shoppinglist.R
 import com.example.shoppinglist.data.ShoppingItem
+import com.example.shoppinglist.data.TargetStore
 import com.example.shoppinglist.ui.catalog.CatalogScreen
 import com.example.shoppinglist.ui.catalog.CatalogViewModel
 import com.example.shoppinglist.ui.common.AppBackground
 import com.example.shoppinglist.ui.scanner.PriceScannerScreen
 import com.example.shoppinglist.ui.scanner.PriceScannerViewModel
 import com.example.shoppinglist.ui.shoppinglist.ShoppingListContent
+import com.example.shoppinglist.ui.shoppinglist.StoreFilter
 import com.example.shoppinglist.ui.shoppinglist.ShoppingListViewModel
 import com.example.shoppinglist.ui.shoppinglist.ShoppingTotalBar
 import kotlinx.coroutines.launch
@@ -58,12 +60,14 @@ private const val TAB_CATALOG = 1
 fun AppContent() {
     var showScanner by rememberSaveable { mutableStateOf(false) }
     var scanItemId by rememberSaveable { mutableStateOf<Long?>(null) }
+    var scanStoreName by rememberSaveable { mutableStateOf(TargetStore.LIDL.name) }
 
     if (showScanner) {
         val context = LocalContext.current
+        val initialStore = TargetStore.valueOf(scanStoreName)
         val scannerViewModel: PriceScannerViewModel = viewModel(
-            key = "scanner-${scanItemId ?: "shelf"}",
-            factory = PriceScannerViewModel.factory(context.applicationContext, scanItemId),
+            key = "scanner-${scanItemId ?: "shelf"}-$scanStoreName",
+            factory = PriceScannerViewModel.factory(context.applicationContext, scanItemId, initialStore),
         )
         PriceScannerScreen(
             viewModel = scannerViewModel,
@@ -76,21 +80,27 @@ fun AppContent() {
         MainScaffold(
             onScanItem = { item: ShoppingItem ->
                 scanItemId = item.id
+                scanStoreName = scanStoreFor(item.targetStore).name
                 showScanner = true
             },
-            onScanShelf = {
+            onScanShelf = { filter: StoreFilter ->
                 scanItemId = null
+                scanStoreName = scanStoreFor(filter.targetStore).name
                 showScanner = true
             },
         )
     }
 }
 
+/** Scanerul lucrează doar cu Lidl sau Penny; articolele „General” și filtrul „Toate” cad pe Lidl. */
+private fun scanStoreFor(store: TargetStore?): TargetStore =
+    if (store == TargetStore.PENNY) TargetStore.PENNY else TargetStore.LIDL
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun MainScaffold(
     onScanItem: (ShoppingItem) -> Unit,
-    onScanShelf: () -> Unit,
+    onScanShelf: (StoreFilter) -> Unit,
 ) {
     val context = LocalContext.current.applicationContext
     val shoppingViewModel: ShoppingListViewModel = viewModel(
@@ -148,7 +158,7 @@ private fun MainScaffold(
         },
         floatingActionButton = {
             ExtendedFloatingActionButton(
-                onClick = onScanShelf,
+                onClick = { onScanShelf(uiState.storeFilter) },
                 text = { Text("📷 Scanează la raft") },
                 icon = {},
             )

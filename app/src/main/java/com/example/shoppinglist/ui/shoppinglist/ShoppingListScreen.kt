@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -51,9 +52,27 @@ fun ShoppingListContent(
             onSelect = viewModel::onStoreFilterSelected,
         )
 
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { viewModel.setShowPrices(!uiState.showPrices) }
+                .padding(horizontal = 16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Checkbox(
+                checked = uiState.showPrices,
+                onCheckedChange = viewModel::setShowPrices,
+            )
+            Text(
+                text = "Afișează prețurile",
+                style = MaterialTheme.typography.bodyMedium,
+            )
+        }
+
         QuickAddSection(
             query = uiState.query,
             suggestions = uiState.suggestions,
+            showPrices = uiState.showPrices,
             onQueryChange = viewModel::onQueryChanged,
             onAddTyped = viewModel::addTypedItem,
             onSuggestionClick = viewModel::addFromCatalog,
@@ -76,11 +95,12 @@ fun ShoppingListContent(
         } else {
             LazyColumn(
                 modifier = Modifier.weight(1f),
-                contentPadding = androidx.compose.foundation.layout.PaddingValues(bottom = 96.dp),
+                contentPadding = PaddingValues(bottom = 96.dp),
             ) {
                 items(items = uiState.items, key = { it.id }) { item ->
                     ShoppingItemCard(
                         item = item,
+                        showPrices = uiState.showPrices,
                         onToggle = { viewModel.toggleBought(item) },
                         onScan = { onScanItem(item) },
                         onDelete = { viewModel.deleteItem(item) },
@@ -142,6 +162,7 @@ fun ShoppingTotalBar(total: Double) {
 private fun QuickAddSection(
     query: String,
     suggestions: List<CatalogProduct>,
+    showPrices: Boolean,
     onQueryChange: (String) -> Unit,
     onAddTyped: () -> Unit,
     onSuggestionClick: (CatalogProduct) -> Unit,
@@ -173,6 +194,7 @@ private fun QuickAddSection(
         suggestions.forEach { product ->
             SuggestionRow(
                 product = product,
+                showPrices = showPrices,
                 onClick = { onSuggestionClick(product) },
             )
         }
@@ -182,6 +204,7 @@ private fun QuickAddSection(
 @Composable
 private fun SuggestionRow(
     product: CatalogProduct,
+    showPrices: Boolean,
     onClick: () -> Unit,
 ) {
     Row(
@@ -198,22 +221,29 @@ private fun SuggestionRow(
                 color = MaterialTheme.colorScheme.onSurface,
             )
             Text(
-                text = "${product.storeName.displayName} · ${product.category}",
+                text = if (showPrices) {
+                    "${product.storeName.displayName} · ${product.category}"
+                } else {
+                    product.storeName.displayName
+                },
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
-        Text(
-            text = product.price.formatLei(),
-            style = MaterialTheme.typography.titleSmall,
-            color = MaterialTheme.colorScheme.primary,
-        )
+        if (showPrices) {
+            Text(
+                text = product.price.formatLei(),
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary,
+            )
+        }
     }
 }
 
 @Composable
 private fun ShoppingItemCard(
     item: ShoppingItem,
+    showPrices: Boolean,
     onToggle: () -> Unit,
     onScan: () -> Unit,
     onDelete: () -> Unit,
@@ -257,7 +287,7 @@ private fun ShoppingItemCard(
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
-            if (item.estimatedPrice > 0.0) {
+            if (showPrices && item.estimatedPrice > 0.0) {
                 Text(
                     text = item.estimatedPrice.formatLei(),
                     style = MaterialTheme.typography.titleSmall,

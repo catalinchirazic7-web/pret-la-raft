@@ -33,6 +33,22 @@ class ShoppingRepository(
 
     suspend fun catalogPriceFor(catalogProductId: Long): Double? = catalogDao.getPrice(catalogProductId)
 
+    fun observeCartTotal(store: TargetStore): Flow<Double> = shoppingDao.observeCartTotal(store)
+
+    fun observeRecentCart(store: TargetStore, limit: Int): Flow<List<ShoppingItem>> =
+        shoppingDao.observeRecentCart(store, limit)
+
+    /** Adaugă direct în coș un produs scanat de pe raft. */
+    suspend fun addToCart(store: TargetStore, title: String, price: Double): Long =
+        shoppingDao.insert(
+            ShoppingItem(title = title, targetStore = store, estimatedPrice = price, isBought = true),
+        )
+
+    /** Marchează în coș un articol existent, cu denumirea și prețul confirmate. */
+    suspend fun markInCart(id: Long, title: String, price: Double) {
+        shoppingDao.updateCartItem(id, title, price)
+    }
+
     private fun escapeLike(value: String): String =
         value
             .replace("\\", "\\\\")

@@ -1,6 +1,7 @@
 package com.example.shoppinglist.ui.shoppinglist
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -32,6 +33,8 @@ data class ShoppingListUiState(
     /** Totalul estimat al produselor nebifate din magazinul selectat. */
     val estimatedTotal: Double = 0.0,
     val storeFilter: StoreFilter = StoreFilter.ALL,
+    /** Dacă descrierile de preț apar pe articole și pe sugestii. */
+    val showPrices: Boolean = true,
     val query: String = "",
     val suggestions: List<CatalogProduct> = emptyList(),
     val errorMessage: String? = null,
@@ -40,11 +43,13 @@ data class ShoppingListUiState(
 @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 class ShoppingListViewModel(
     private val repository: ShoppingRepository,
+    private val preferences: SharedPreferences,
 ) : ViewModel() {
 
     private val query = MutableStateFlow("")
     private val errorMessage = MutableStateFlow<String?>(null)
     private val storeFilter = MutableStateFlow(StoreFilter.ALL)
+    private val showPrices = MutableStateFlow(preferences.getBoolean(KEY_SHOW_PRICES, true))
 
     private val suggestions: Flow<List<CatalogProduct>> = query
         .debounce(SEARCH_DEBOUNCE_MS)
@@ -53,17 +58,23 @@ class ShoppingListViewModel(
             if (text.isBlank()) flowOf(emptyList()) else repository.searchCatalog(text)
         }
 
+    private val filterAndPrices = combine(storeFilter, showPrices) { selected, prices ->
+        selected to prices
+    }
+
     val uiState: StateFlow<ShoppingListUiState> = combine(
         repository.observeShoppingItems(),
         query,
         suggestions,
         errorMessage,
-        storeFilter,
-    ) { items, currentQuery, matches, error, selected ->
+        filterAndPrices,
+    ) { items, currentQuery, matches, error, filterAndPrice ->
+        val (selected, prices) = filterAndPrice
         ShoppingListUiState(
             items = items.visibleFor(selected),
             estimatedTotal = estimatedTotalFor(items, selected),
             storeFilter = selected,
+            showPrices = prices,
             query = currentQuery,
             suggestions = matches,
             errorMessage = error,
@@ -80,6 +91,12 @@ class ShoppingListViewModel(
 
     fun onStoreFilterSelected(filter: StoreFilter) {
         storeFilter.value = filter
+    }
+
+    /** Arată sau ascunde descrierile de preț; alegerea se păstrează între sesiuni. */
+    fun setShowPrices(value: Boolean) {
+        showPrices.value = value
+        preferences.edit().putBoolean(KEY_SHOW_PRICES, value).apply()
     }
 
     fun dismissError() {
@@ -154,12 +171,16 @@ class ShoppingListViewModel(
         private const val TAG = "ShoppingListViewModel"
         private const val SEARCH_DEBOUNCE_MS = 200L
         private const val STOP_TIMEOUT_MS = 5_000L
+        private const val PREFERENCES_NAME = "ui_prefs"
+        private const val KEY_SHOW_PRICES = "show_prices"
 
         fun factory(context: Context): ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val database = AppDatabase.getInstance(context)
+                val appContext = context.applicationContext
+                val database = AppDatabase.getInstance(appContext)
                 ShoppingListViewModel(
-                    ShoppingRepository(database.catalogDao(), database.shoppingDao()),
+                    repository = ShoppingRepository(database.catalogDao(), database.shoppingDao()),
+                    preferences = appContext.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE),
                 )
             }
         }

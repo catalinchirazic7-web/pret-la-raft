@@ -10,29 +10,56 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.shoppinglist.data.AppDatabase
 import com.example.shoppinglist.data.ShoppingItem
 import com.example.shoppinglist.data.ShoppingRepository
-import com.example.shoppinglist.ocr.PriceCandidate
+import com.example.shoppinglist.data.TargetStore
+import com.example.shoppinglist.ocr.DetectionStabilizer
+import com.example.shoppinglist.ocr.ScanResult
+import com.example.shoppinglist.ocr.StablePrice
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 /**
- * @param itemId articolul din listă pentru care se scanează prețul; null = scanare generală.
+ * Asistentul de scanare la raft.
+ *
+ * @param itemId articolul din listă scanat (confirmarea îl marchează în coș); null = scanare liberă,
+ *               confirmarea adaugă un produs nou în coș.
+ * @param initialStore magazinul activ la deschiderea scanerului; se poate schimba din ecran.
  */
+@OptIn(ExperimentalCoroutinesApi::class)
 class PriceScannerViewModel(
     private val itemId: Long?,
     private val repository: ShoppingRepository,
+    initialStore: TargetStore,
 ) : ViewModel() {
 
-    private val recentValues = ArrayDeque<Double>()
+    private val stabilizer = DetectionStabilizer()
 
-    private val _detectedPrice = MutableStateFlow<Double?>(null)
-    val detectedPrice: StateFlow<Double?> = _detectedPrice.asStateFlow()
+    private val _detected = MutableStateFlow<StablePrice?>(null)
+    /** Ultimul preț stabil citit de pe etichetă (preț și denumire). */
+    val detected: StateFlow<StablePrice?> = _detected.asStateFlow()
+
+    private val _cardOpen = MutableStateFlow(false)
+    /** Cardul de confirmare este deschis; analiza cadrelor este înghețată cât timp e deschis. */
+    val cardOpen: StateFlow<Boolean> = _cardOpen.asStateFlow()
+
+    /** Se schimbă la fiecare deschidere a cardului, ca valorile din card să se reinițializeze. */
+    private val _cardId = MutableStateFlow(0)
+    val cardId: StateFlow<Int> = _cardId.asStateFlow()
+
+    private val _sessionCount = MutableStateFlow(0)
+    /** Numărul de produse confirmate în sesiunea curentă a scanerului. */
+    val sessionCount: StateFlow<Int> = _sessionCount.asStateFlow()
+
+    private val _store = MutableStateFlow(initialStore)
+    val store: StateFlow<TargetStore> = _store.asStateFlow()
 
     private val _catalogPrice = MutableStateFlow<Double?>(null)
     val catalogPrice: StateFlow<Double?> = _catalogPrice.asStateFlow()
@@ -42,6 +69,16 @@ class PriceScannerViewModel(
 
     val item: StateFlow<ShoppingItem?> = (itemId?.let { repository.observeShoppingItem(it) } ?: flowOf(null))
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MS), null)
+
+    /** Totalul coșului pentru magazinul activ; se recalculează reactiv din Room. */
+    val cartTotal: StateFlow<Double> = _store
+        .flatMapLatest { repository.observeCartTotal(it) }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MS), 0.0)
+
+    /** Ultimele produse din coșul magazinului activ. */
+    val recentCart: StateFlow<List<ShoppingItem>> = _store
+        .flatMapLatest { repository.observeRecentCart(it, RECENT_CART_LIMIT) }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MS), emptyList())
 
     init {
         viewModelScope.launch {
@@ -54,55 +91,78 @@ class PriceScannerViewModel(
         }
     }
 
-    /**
-     * Primește rezultatul fiecărui cadru OCR. Un preț este publicat doar după ce apare
-     * de cel puțin [MIN_VOTES] ori în ultimele [WINDOW] cadre, ca să nu sară valorile
-     * din cauza zgomotului.
-     */
-    fun onFrameResult(candidate: PriceCandidate?) {
-        if (candidate == null) return
-        recentValues.addLast(candidate.value)
-        if (recentValues.size > WINDOW) recentValues.removeFirst()
-        val (value, votes) = recentValues
-            .groupingBy { it }
-            .eachCount()
-            .maxByOrNull { it.value }
-            ?.let { it.key to it.value }
-            ?: return
-        if (votes >= MIN_VOTES) _detectedPrice.value = value
+    /** Primește rezultatul unui cadru OCR; ignorat cât timp cardul de confirmare e deschis. */
+    fun onFrameResult(result: ScanResult) {
+        if (_cardOpen.value) return
+        val stable = stabilizer.add(result)
+        if (stable != null) {
+            _detected.value = stable
+            if (stabilizer.isArmed) openCard()
+        }
     }
 
-    /** Salvează prețul de raft (detectat sau introdus manual) ca estimatedPrice al articolului. */
-    fun saveShelfPrice(price: Double, onSaved: () -> Unit) {
-        val id = itemId ?: return
+    /** Deschide cardul de confirmare (automat la un preț stabil, sau manual). */
+    fun openCard() {
+        _cardId.value = _cardId.value + 1
+        _cardOpen.value = true
+    }
+
+    /** Închide cardul fără salvare și reia scanarea. */
+    fun rescan() {
+        stabilizer.disarm()
+        _detected.value = null
+        _cardOpen.value = false
+    }
+
+    fun selectStore(store: TargetStore) {
+        _store.value = store
+    }
+
+    /**
+     * Confirmă produsul: îl salvează în coș cu denumirea și prețul din card.
+     * În modul articol (itemId != null) se apelează [onDone] și ecranul se închide;
+     * în scanare liberă se resetează vizorul pentru următorul produs.
+     */
+    fun confirm(title: String, price: Double, onDone: () -> Unit) {
+        val id = itemId
+        val target = _store.value
         viewModelScope.launch {
             try {
-                repository.updateEstimatedPrice(id, price)
+                if (id != null) {
+                    repository.markInCart(id, title, price)
+                } else {
+                    repository.addToCart(target, title, price)
+                }
                 _saveError.value = null
-                onSaved()
+                _sessionCount.value = _sessionCount.value + 1
+                stabilizer.disarm()
+                _detected.value = null
+                _cardOpen.value = false
+                if (id != null) onDone()
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {
-                Log.e(TAG, "Salvarea prețului de raft a eșuat", e)
-                _saveError.value = "Prețul nu a putut fi salvat. Încearcă din nou."
+                Log.e(TAG, "Salvarea în coș a eșuat", e)
+                _saveError.value = "Produsul nu a putut fi salvat. Încearcă din nou."
             }
         }
     }
 
     companion object {
         private const val TAG = "PriceScannerViewModel"
-        private const val WINDOW = 6
-        private const val MIN_VOTES = 2
+        private const val RECENT_CART_LIMIT = 3
         private const val STOP_TIMEOUT_MS = 5_000L
 
-        fun factory(context: Context, itemId: Long?): ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val database = AppDatabase.getInstance(context)
-                PriceScannerViewModel(
-                    itemId = itemId,
-                    repository = ShoppingRepository(database.catalogDao(), database.shoppingDao()),
-                )
+        fun factory(context: Context, itemId: Long?, initialStore: TargetStore): ViewModelProvider.Factory =
+            viewModelFactory {
+                initializer {
+                    val database = AppDatabase.getInstance(context.applicationContext)
+                    PriceScannerViewModel(
+                        itemId = itemId,
+                        repository = ShoppingRepository(database.catalogDao(), database.shoppingDao()),
+                        initialStore = initialStore,
+                    )
+                }
             }
-        }
     }
 }

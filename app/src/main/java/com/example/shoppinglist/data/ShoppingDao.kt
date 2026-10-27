@@ -31,4 +31,23 @@ interface ShoppingDao {
 
     @Query("UPDATE shopping_items SET estimatedPrice = :price WHERE id = :id")
     suspend fun setEstimatedPrice(id: Long, price: Double): Int
+
+    /** Totalul articolelor din coș (bifate) pentru magazinul dat. */
+    @Query("SELECT COALESCE(SUM(estimatedPrice), 0.0) FROM shopping_items WHERE isBought = 1 AND targetStore = :store")
+    fun observeCartTotal(store: TargetStore): Flow<Double>
+
+    /** Ultimele articole adăugate în coș pentru magazinul dat. */
+    @Query(
+        """
+        SELECT * FROM shopping_items
+        WHERE isBought = 1 AND targetStore = :store
+        ORDER BY id DESC
+        LIMIT :limit
+        """
+    )
+    fun observeRecentCart(store: TargetStore, limit: Int): Flow<List<ShoppingItem>>
+
+    /** Marchează un articol existent ca fiind în coș, cu denumirea și prețul confirmate. */
+    @Query("UPDATE shopping_items SET title = :title, estimatedPrice = :price, isBought = 1 WHERE id = :id")
+    suspend fun updateCartItem(id: Long, title: String, price: Double): Int
 }
