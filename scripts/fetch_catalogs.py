@@ -347,12 +347,15 @@ def probe_penny(session: requests.Session) -> StoreProbe:
     else:
         try:
             first_page = fetch_penny_flyer_page(session, slug, 0)
+        except requests.RequestException as exc:
+            log.warning("Penny: API-ul pliantului a eșuat (%s)", exc)
+            first_page = []
+        if first_page:
             return StoreProbe(
                 valid_until=penny_valid_until(first_page),
                 load=lambda: penny_entries_from(fetch_penny_flyer_products(session, slug)),
             )
-        except requests.RequestException as exc:
-            log.warning("Penny: API-ul pliantului a eșuat (%s)", exc)
+        log.warning("Penny: API-ul pliantului nu a returnat produse")
 
     log.warning("Penny: folosesc fallback, produsele din pagina /oferte")
     payload_products = find_penny_payload_products(root)

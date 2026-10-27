@@ -4,7 +4,7 @@ import java.text.NumberFormat
 import java.util.Locale
 
 private val priceFormat: NumberFormat =
-    NumberFormat.getNumberInstance(Locale.of("ro", "RO")).apply {
+    NumberFormat.getNumberInstance(Locale.Builder().setLanguage("ro").setRegion("RO").build()).apply {
         minimumFractionDigits = 2
         maximumFractionDigits = 2
     }

@@ -31,13 +31,26 @@ class StoreFilterTest {
     }
 
     @Test
-    fun totalCountsOnlyUnboughtFromSelectedStore() {
-        assertEquals(6.49, estimatedTotalFor(items, StoreFilter.LIDL), 0.001)
+    fun estimatedTotalIncludesBoughtItemsOfSelectedStore() {
+        assertEquals(6.49 + 3.99, estimatedTotalFor(items, StoreFilter.LIDL), 0.001)
         assertEquals(5.29, estimatedTotalFor(items, StoreFilter.PENNY), 0.001)
     }
 
     @Test
-    fun allTotalIncludesGeneralButNotBought() {
-        assertEquals(6.49 + 5.29 + 2.00, estimatedTotalFor(items, StoreFilter.ALL), 0.001)
+    fun allTotalIncludesEveryItem() {
+        assertEquals(6.49 + 5.29 + 2.00 + 3.99, estimatedTotalFor(items, StoreFilter.ALL), 0.001)
+    }
+
+    @Test
+    fun boughtTotalCountsOnlyBoughtItemsOfSelectedStore() {
+        assertEquals(3.99, boughtTotalFor(items, StoreFilter.LIDL), 0.001)
+        assertEquals(0.0, boughtTotalFor(items, StoreFilter.PENNY), 0.001)
+        assertEquals(3.99, boughtTotalFor(items, StoreFilter.ALL), 0.001)
+    }
+
+    @Test
+    fun totalStaysWhenItemsAreBought() {
+        val allBought = items.map { it.copy(isBought = true) }
+        assertEquals(6.49 + 5.29 + 2.00 + 3.99, estimatedTotalFor(allBought, StoreFilter.ALL), 0.001)
     }
 }

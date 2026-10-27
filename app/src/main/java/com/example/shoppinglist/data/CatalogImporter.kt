@@ -2,6 +2,7 @@ package com.example.shoppinglist.data
 
 import android.content.Context
 import android.util.Log
+import androidx.core.content.edit
 import androidx.room.withTransaction
 import java.security.MessageDigest
 import java.time.LocalDate
@@ -53,7 +54,7 @@ class CatalogImporter(
                     catalogDao.deleteAll()
                     catalogDao.insertProducts(parsed.products)
                 }
-                prefs.edit().putString(KEY_VERSION, version).apply()
+                prefs.edit { putString(KEY_VERSION, version) }
                 Log.i(TAG, "Importate ${parsed.products.size} produse (${parsed.skipped} ignorate)")
                 CatalogImportResult.Imported(parsed.products.size, parsed.skipped)
             } catch (e: CancellationException) {

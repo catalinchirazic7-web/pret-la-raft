@@ -138,7 +138,10 @@ private fun MainScaffold(
         bottomBar = {
             Column {
                 if (tab == TAB_LIST) {
-                    ShoppingTotalBar(total = uiState.estimatedTotal)
+                    ShoppingTotalBar(
+                        total = uiState.estimatedTotal,
+                        boughtTotal = uiState.boughtTotal,
+                    )
                 }
                 NavigationBar {
                     NavigationBarItem(

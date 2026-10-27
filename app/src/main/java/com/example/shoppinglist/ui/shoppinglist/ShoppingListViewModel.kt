@@ -3,6 +3,7 @@ package com.example.shoppinglist.ui.shoppinglist
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import androidx.core.content.edit
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -30,8 +31,10 @@ import kotlinx.coroutines.launch
 data class ShoppingListUiState(
     /** Articolele vizibile pentru filtrul selectat. */
     val items: List<ShoppingItem> = emptyList(),
-    /** Totalul estimat al produselor nebifate din magazinul selectat. */
+    /** Totalul estimat al tuturor produselor din magazinul selectat. */
     val estimatedTotal: Double = 0.0,
+    /** Subtotalul produselor bifate (în coș). */
+    val boughtTotal: Double = 0.0,
     val storeFilter: StoreFilter = StoreFilter.ALL,
     /** Dacă descrierile de preț apar pe articole și pe sugestii. */
     val showPrices: Boolean = true,
@@ -73,6 +76,7 @@ class ShoppingListViewModel(
         ShoppingListUiState(
             items = items.visibleFor(selected),
             estimatedTotal = estimatedTotalFor(items, selected),
+            boughtTotal = boughtTotalFor(items, selected),
             storeFilter = selected,
             showPrices = prices,
             query = currentQuery,
@@ -96,7 +100,7 @@ class ShoppingListViewModel(
     /** Arată sau ascunde descrierile de preț; alegerea se păstrează între sesiuni. */
     fun setShowPrices(value: Boolean) {
         showPrices.value = value
-        preferences.edit().putBoolean(KEY_SHOW_PRICES, value).apply()
+        preferences.edit { putBoolean(KEY_SHOW_PRICES, value) }
     }
 
     fun dismissError() {

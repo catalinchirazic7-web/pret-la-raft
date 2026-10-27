@@ -29,6 +29,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextDecoration
@@ -132,27 +134,31 @@ private fun StoreFilterRow(
     }
 }
 
-/** Bara de total afișată deasupra barei de navigare. */
+/** Bara de total afișată deasupra barei de navigare: totalul estimat și subtotalul bifatelor. */
 @Composable
-fun ShoppingTotalBar(total: Double) {
+fun ShoppingTotalBar(total: Double, boughtTotal: Double) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         color = Color.White,
         tonalElevation = 3.dp,
     ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
+        Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "Total estimat",
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.weight(1f),
+                )
+                Text(
+                    text = total.formatLei(),
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
             Text(
-                text = "Total estimat (nebifate)",
-                style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.weight(1f),
-            )
-            Text(
-                text = total.formatLei(),
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold,
+                text = "Bifate (în coș): ${boughtTotal.formatLei()}",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
     }
@@ -295,7 +301,10 @@ private fun ShoppingItemCard(
                     modifier = Modifier.padding(horizontal = 4.dp),
                 )
             }
-            TextButton(onClick = onScan) {
+            TextButton(
+                onClick = onScan,
+                modifier = Modifier.semantics { contentDescription = "Deschide scanerul" },
+            ) {
                 Text("📷")
             }
             TextButton(onClick = onDelete) {

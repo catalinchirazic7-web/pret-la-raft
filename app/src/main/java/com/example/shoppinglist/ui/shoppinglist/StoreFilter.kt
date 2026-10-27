@@ -16,6 +16,10 @@ enum class StoreFilter(val label: String, val targetStore: TargetStore?) {
 fun List<ShoppingItem>.visibleFor(selected: StoreFilter): List<ShoppingItem> =
     filter(selected::matches)
 
-/** Totalul estimat al produselor nebifate, doar din magazinul selectat. */
+/** Totalul estimat al tuturor produselor din magazinul selectat, bifate sau nu. */
 fun estimatedTotalFor(items: List<ShoppingItem>, selected: StoreFilter): Double =
-    items.filter { !it.isBought && selected.matches(it) }.sumOf { it.estimatedPrice }
+    items.filter { selected.matches(it) }.sumOf { it.estimatedPrice }
+
+/** Subtotalul produselor bifate (în coș), din magazinul selectat. */
+fun boughtTotalFor(items: List<ShoppingItem>, selected: StoreFilter): Double =
+    items.filter { it.isBought && selected.matches(it) }.sumOf { it.estimatedPrice }

@@ -63,6 +63,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -379,7 +381,10 @@ private fun ScannerPanel(
             }
 
             Row(verticalAlignment = Alignment.CenterVertically) {
-                OutlinedButton(onClick = onOpenCard) {
+                OutlinedButton(
+                    onClick = onOpenCard,
+                    modifier = Modifier.semantics { contentDescription = "Introducere manuală preț" },
+                ) {
                     Text("✏️ Introdu manual")
                 }
                 if (hasFlash) {
