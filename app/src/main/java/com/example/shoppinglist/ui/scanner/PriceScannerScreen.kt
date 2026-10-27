@@ -72,6 +72,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import com.example.shoppinglist.data.CatalogProduct
 import com.example.shoppinglist.data.ShoppingItem
 import com.example.shoppinglist.data.TargetStore
 import com.example.shoppinglist.ocr.PriceTagAnalyzer
@@ -99,6 +100,7 @@ fun PriceScannerScreen(
     val cartTotal by viewModel.cartTotal.collectAsState()
     val recentCart by viewModel.recentCart.collectAsState()
     val saveError by viewModel.saveError.collectAsState()
+    val catalogMatch by viewModel.catalogMatch.collectAsState()
 
     var hasPermission by remember {
         mutableStateOf(
@@ -189,6 +191,7 @@ fun PriceScannerScreen(
                     ConfirmationCard(
                         initialTitle = detected?.title.orEmpty(),
                         initialPrice = detected?.price?.let { String.format(Locale.US, "%.2f", it) }.orEmpty(),
+                        reference = catalogMatch,
                         onRescan = viewModel::rescan,
                         onConfirm = { title, price ->
                             viewModel.confirm(title, price, onDone = onClose)
@@ -403,6 +406,7 @@ private fun ScannerPanel(
 private fun ConfirmationCard(
     initialTitle: String,
     initialPrice: String,
+    reference: CatalogProduct?,
     onRescan: () -> Unit,
     onConfirm: (String, Double) -> Unit,
 ) {
@@ -442,6 +446,21 @@ private fun ConfirmationCard(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                 modifier = Modifier.fillMaxWidth(),
             )
+            reference?.let { product ->
+                Text(
+                    text = "În revistă (${product.storeName.displayName}): ${product.price.formatLei()}",
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+                price?.let { value ->
+                    val difference = value - product.price
+                    val sign = if (difference > 0) "+" else ""
+                    Text(
+                        text = "Diferență față de revistă: $sign${difference.formatLei()}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedButton(onClick = onRescan, modifier = Modifier.weight(1f)) {
                     Text("Rescanează")

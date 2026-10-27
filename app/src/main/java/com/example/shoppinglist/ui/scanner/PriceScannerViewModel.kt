@@ -8,21 +8,26 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.shoppinglist.data.AppDatabase
+import com.example.shoppinglist.data.CatalogProduct
 import com.example.shoppinglist.data.ShoppingItem
 import com.example.shoppinglist.data.ShoppingRepository
 import com.example.shoppinglist.data.TargetStore
 import com.example.shoppinglist.ocr.DetectionStabilizer
 import com.example.shoppinglist.ocr.ScanResult
 import com.example.shoppinglist.ocr.StablePrice
+import com.example.shoppinglist.ui.catalog.CatalogMatcher
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -79,6 +84,23 @@ class PriceScannerViewModel(
     val recentCart: StateFlow<List<ShoppingItem>> = _store
         .flatMapLatest { repository.observeRecentCart(it, RECENT_CART_LIMIT) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MS), emptyList())
+
+    private val createdAt = System.currentTimeMillis()
+
+    /** Produsele valabile din revistă pentru magazinul activ. */
+    private val activeCatalog: Flow<List<CatalogProduct>> = _store.flatMapLatest { store ->
+        repository.observeActiveProducts(createdAt).map { products ->
+            products.filter { it.storeName.toTargetStore() == store }
+        }
+    }
+
+    /**
+     * Produsul din revistă corespunzător denumirii de pe raft, pentru compararea prețurilor.
+     * Null dacă nu s-a citit o denumire sau nu există o potrivire suficientă.
+     */
+    val catalogMatch: StateFlow<CatalogProduct?> = combine(_detected, activeCatalog) { detected, products ->
+        detected?.title?.let { CatalogMatcher.bestMatch(it, products) }
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MS), null)
 
     init {
         viewModelScope.launch {

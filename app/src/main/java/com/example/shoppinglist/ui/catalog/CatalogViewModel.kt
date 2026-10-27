@@ -9,6 +9,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.shoppinglist.data.AppDatabase
 import com.example.shoppinglist.data.CatalogProduct
 import com.example.shoppinglist.data.ShoppingRepository
+import com.example.shoppinglist.ui.shoppinglist.StoreFilter
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -16,24 +17,27 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 
-/** Produsele valabile din cataloage, filtrate după categoria selectată. */
+/** Produsele valabile din cataloage, filtrate după magazin și după categorie. */
 class CatalogViewModel(
     repository: ShoppingRepository,
     nowMillis: Long,
 ) : ViewModel() {
 
-    private val selected = MutableStateFlow(CatalogCategory.ALL)
+    private val selectedCategory = MutableStateFlow(CatalogCategory.ALL)
+    private val selectedStoreFilter = MutableStateFlow(StoreFilter.ALL)
 
-    val selectedCategory: StateFlow<CatalogCategory> = selected.asStateFlow()
+    val category: StateFlow<CatalogCategory> = selectedCategory.asStateFlow()
+    val storeFilter: StateFlow<StoreFilter> = selectedStoreFilter.asStateFlow()
 
     val products: StateFlow<List<CatalogProduct>> = combine(
         repository.observeActiveProducts(nowMillis),
-        selected,
-    ) { all, category ->
-        if (category == CatalogCategory.ALL) {
-            all
-        } else {
-            all.filter { CatalogCategory.of(it.category, it.title) == category }
+        selectedCategory,
+        selectedStoreFilter,
+    ) { all, categoryFilter, storeFilter ->
+        all.filter { product ->
+            (storeFilter.targetStore == null || product.storeName.toTargetStore() == storeFilter.targetStore) &&
+                (categoryFilter == CatalogCategory.ALL ||
+                    CatalogCategory.of(product.category, product.title) == categoryFilter)
         }
     }.stateIn(
         scope = viewModelScope,
@@ -42,7 +46,11 @@ class CatalogViewModel(
     )
 
     fun selectCategory(category: CatalogCategory) {
-        selected.value = category
+        selectedCategory.value = category
+    }
+
+    fun selectStore(filter: StoreFilter) {
+        selectedStoreFilter.value = filter
     }
 
     companion object {
@@ -50,7 +58,7 @@ class CatalogViewModel(
 
         fun factory(context: Context): ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val database = AppDatabase.getInstance(context)
+                val database = AppDatabase.getInstance(context.applicationContext)
                 CatalogViewModel(
                     repository = ShoppingRepository(database.catalogDao(), database.shoppingDao()),
                     nowMillis = System.currentTimeMillis(),

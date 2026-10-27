@@ -80,7 +80,9 @@ class ShoppingListViewModel(
             storeFilter = selected,
             showPrices = prices,
             query = currentQuery,
-            suggestions = matches,
+            suggestions = matches.filter { product ->
+                selected.targetStore == null || product.storeName.toTargetStore() == selected.targetStore
+            },
             errorMessage = error,
         )
     }.stateIn(

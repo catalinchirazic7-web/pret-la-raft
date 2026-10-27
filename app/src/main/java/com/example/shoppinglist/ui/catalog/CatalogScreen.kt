@@ -36,6 +36,7 @@ import com.example.shoppinglist.ui.common.CardShape
 import com.example.shoppinglist.ui.common.badgeColor
 import com.example.shoppinglist.ui.common.formatLei
 import com.example.shoppinglist.ui.common.formatValidUntil
+import com.example.shoppinglist.ui.shoppinglist.StoreFilter
 
 /** Tab-ul „Oferte & Cataloage”: categorii și produsele valabile. */
 @Composable
@@ -45,9 +46,25 @@ fun CatalogScreen(
     modifier: Modifier = Modifier,
 ) {
     val products by viewModel.products.collectAsState()
-    val selected by viewModel.selectedCategory.collectAsState()
+    val selected by viewModel.category.collectAsState()
+    val storeFilter by viewModel.storeFilter.collectAsState()
 
     Column(modifier = modifier.fillMaxSize()) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            StoreFilter.entries.forEach { option ->
+                FilterChip(
+                    selected = option == storeFilter,
+                    onClick = { viewModel.selectStore(option) },
+                    label = { Text(option.label) },
+                )
+            }
+        }
+
         LazyRow(
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
