@@ -13,3 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# IDE si cache Python
+.idea/
+__pycache__/
+*.pyc
