@@ -1,101 +1,73 @@
 [
   {
     "storeName": "Lidl",
-    "title": "Avocado",
-    "price": 3.49,
-    "category": "Fructe și legume",
-    "validUntil": "2026-11-01"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Bere blondă",
-    "price": 1.99,
-    "category": "Alimente",
-    "validUntil": "2026-11-01"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Bio lămâi",
-    "price": 6.99,
-    "category": "Alimente",
-    "validUntil": "2026-11-01"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Brânză Halloumi",
-    "price": 14.99,
-    "category": "Alimente",
-    "validUntil": "2026-11-01"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Cartofi roșii",
-    "price": 9.49,
-    "category": "Fructe și legume",
-    "validUntil": "2026-11-01"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Hrană umedă, mousse pentru pisici",
-    "price": 29.99,
-    "category": "Alimente",
-    "validUntil": "2026-11-01"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Hrană umedă, pate pentru pisici",
+    "title": "Bere albă",
     "price": 5.49,
     "category": "Alimente",
-    "validUntil": "2026-11-01"
+    "validUntil": "2026-11-08"
   },
   {
     "storeName": "Lidl",
-    "title": "Magdalene cu cremă de cacao",
+    "title": "Bere blondă nefiltrată",
+    "price": 4.49,
+    "category": "Alimente",
+    "validUntil": "2026-11-08"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Ciorbă",
     "price": 5.99,
     "category": "Alimente",
-    "validUntil": "2026-11-01"
+    "validUntil": "2026-11-08"
   },
   {
     "storeName": "Lidl",
-    "title": "Mazăre foarte fină",
-    "price": 3.29,
-    "category": "Alimente",
-    "validUntil": "2026-11-01"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Mere roșii",
-    "price": 6.49,
+    "title": "Conopidă",
+    "price": 7.99,
     "category": "Fructe și legume",
-    "validUntil": "2026-11-01"
+    "validUntil": "2026-11-08"
   },
   {
     "storeName": "Lidl",
-    "title": "Ouă cu surpriză",
-    "price": 15.99,
+    "title": "Crăciuniță",
+    "price": 18.99,
+    "category": "P+F",
+    "validUntil": "2026-11-08"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Cârnați sticks",
+    "price": 8.99,
     "category": "Alimente",
-    "validUntil": "2026-11-01"
+    "validUntil": "2026-11-08"
   },
   {
     "storeName": "Lidl",
-    "title": "Salam",
-    "price": 7.49,
+    "title": "Iaurt cu fructe",
+    "price": 3.99,
     "category": "Alimente",
-    "validUntil": "2026-11-01"
+    "validUntil": "2026-11-08"
   },
   {
     "storeName": "Lidl",
-    "title": "Struguri albi cu sâmburi",
-    "price": 6.49,
+    "title": "Mango",
+    "price": 4.99,
     "category": "Fructe și legume",
-    "validUntil": "2026-11-01"
+    "validUntil": "2026-11-08"
   },
   {
     "storeName": "Lidl",
-    "title": "Varză albă",
-    "price": 14.99,
+    "title": "Mozzarella rasă",
+    "price": 19.99,
     "category": "Alimente",
-    "validUntil": "2026-11-01"
+    "validUntil": "2026-11-08"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Salată verde",
+    "price": 2.29,
+    "category": "Fructe și legume",
+    "validUntil": "2026-11-08"
   },
   {
     "storeName": "Penny",
