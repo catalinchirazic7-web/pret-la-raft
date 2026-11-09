@@ -1,73 +1,108 @@
 [
   {
     "storeName": "Lidl",
-    "title": "Bere albă",
-    "price": 5.49,
-    "category": "Alimente",
-    "validUntil": "2026-11-08"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Bere blondă nefiltrată",
-    "price": 4.49,
-    "category": "Alimente",
-    "validUntil": "2026-11-08"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Ciorbă",
-    "price": 5.99,
-    "category": "Alimente",
-    "validUntil": "2026-11-08"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Conopidă",
-    "price": 7.99,
+    "title": "Avocado",
+    "price": 3.49,
     "category": "Fructe și legume",
-    "validUntil": "2026-11-08"
+    "validUntil": "2026-11-15"
   },
   {
     "storeName": "Lidl",
-    "title": "Crăciuniță",
-    "price": 18.99,
-    "category": "P+F",
-    "validUntil": "2026-11-08"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Cârnați sticks",
-    "price": 8.99,
+    "title": "Bere blondă",
+    "price": 8.89,
     "category": "Alimente",
-    "validUntil": "2026-11-08"
+    "validUntil": "2026-11-15"
   },
   {
     "storeName": "Lidl",
-    "title": "Iaurt cu fructe",
+    "title": "Bere blondă",
+    "price": 19.69,
+    "category": "Alimente",
+    "validUntil": "2026-11-15"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Cafea boabe",
+    "price": 57.99,
+    "category": "Alimente",
+    "validUntil": "2026-11-15"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Fasole bătută",
     "price": 3.99,
     "category": "Alimente",
-    "validUntil": "2026-11-08"
+    "validUntil": "2026-11-15"
   },
   {
     "storeName": "Lidl",
-    "title": "Mango",
-    "price": 4.99,
-    "category": "Fructe și legume",
-    "validUntil": "2026-11-08"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Mozzarella rasă",
-    "price": 19.99,
+    "title": "Felie de lapte",
+    "price": 22.99,
     "category": "Alimente",
-    "validUntil": "2026-11-08"
+    "validUntil": "2026-11-15"
   },
   {
     "storeName": "Lidl",
-    "title": "Salată verde",
-    "price": 2.29,
+    "title": "Kaki",
+    "price": 9.99,
+    "category": "Alimente",
+    "validUntil": "2026-11-15"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Portocale",
+    "price": 2.99,
     "category": "Fructe și legume",
-    "validUntil": "2026-11-08"
+    "validUntil": "2026-11-15"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Ridiche neagră",
+    "price": 1.99,
+    "category": "Fructe și legume",
+    "validUntil": "2026-11-15"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Rodii",
+    "price": 2.99,
+    "category": "Fructe și legume",
+    "validUntil": "2026-11-15"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Roșii cherry",
+    "price": 8.99,
+    "category": "Fructe și legume",
+    "validUntil": "2026-11-15"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Somon în foietaj",
+    "price": 39.99,
+    "category": "Alimente",
+    "validUntil": "2026-11-15"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Tocană de legume",
+    "price": 2.89,
+    "category": "Alimente",
+    "validUntil": "2026-11-15"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Unt cu trufe / fulgi de chilli",
+    "price": 8.99,
+    "category": "Alimente",
+    "validUntil": "2026-11-15"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Țelină",
+    "price": 3.99,
+    "category": "Fructe și legume",
+    "validUntil": "2026-11-15"
   },
   {
     "storeName": "Penny",
