@@ -1,108 +1,108 @@
 [
   {
     "storeName": "Lidl",
-    "title": "Avocado",
-    "price": 3.49,
+    "title": "Bere blondă",
+    "price": 2.29,
+    "category": "Alimente",
+    "validUntil": "2026-11-22"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Bere blondă",
+    "price": 1.99,
+    "category": "Alimente",
+    "validUntil": "2026-11-22"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Bere blondă",
+    "price": 3.19,
+    "category": "Alimente",
+    "validUntil": "2026-11-22"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Bere blondă",
+    "price": 7.79,
+    "category": "Alimente",
+    "validUntil": "2026-11-22"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Bere strong",
+    "price": 2.39,
+    "category": "Alimente",
+    "validUntil": "2026-11-22"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Brânză topită",
+    "price": 7.49,
+    "category": "Alimente",
+    "validUntil": "2026-11-22"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Cartofi pentru copt sau piure",
+    "price": 6.99,
     "category": "Fructe și legume",
-    "validUntil": "2026-11-15"
+    "validUntil": "2026-11-22"
   },
   {
     "storeName": "Lidl",
-    "title": "Bere blondă",
-    "price": 8.89,
+    "title": "Conservă din carne de porc, în suc propriu",
+    "price": 6.79,
     "category": "Alimente",
-    "validUntil": "2026-11-15"
+    "validUntil": "2026-11-22"
   },
   {
     "storeName": "Lidl",
-    "title": "Bere blondă",
-    "price": 19.69,
-    "category": "Alimente",
-    "validUntil": "2026-11-15"
+    "title": "Crăciuniță",
+    "price": 18.99,
+    "category": "P+F",
+    "validUntil": "2026-11-22"
   },
   {
     "storeName": "Lidl",
-    "title": "Cafea boabe",
-    "price": 57.99,
-    "category": "Alimente",
-    "validUntil": "2026-11-15"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Fasole bătută",
+    "title": "Iaurt cremos în stil grecesc",
     "price": 3.99,
     "category": "Alimente",
-    "validUntil": "2026-11-15"
+    "validUntil": "2026-11-22"
   },
   {
     "storeName": "Lidl",
-    "title": "Felie de lapte",
-    "price": 22.99,
-    "category": "Alimente",
-    "validUntil": "2026-11-15"
+    "title": "Mango",
+    "price": 4.99,
+    "category": "Fructe și legume",
+    "validUntil": "2026-11-22"
   },
   {
     "storeName": "Lidl",
-    "title": "Kaki",
+    "title": "Mere roșii, bio",
+    "price": 6.99,
+    "category": "Fructe și legume",
+    "validUntil": "2026-11-22"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Panzerotti umpluți cu creveți și crabi",
     "price": 9.99,
     "category": "Alimente",
-    "validUntil": "2026-11-15"
+    "validUntil": "2026-11-22"
   },
   {
     "storeName": "Lidl",
-    "title": "Portocale",
-    "price": 2.99,
+    "title": "Sfeclă roșie",
+    "price": 1.59,
     "category": "Fructe și legume",
-    "validUntil": "2026-11-15"
+    "validUntil": "2026-11-22"
   },
   {
     "storeName": "Lidl",
-    "title": "Ridiche neagră",
-    "price": 1.99,
-    "category": "Fructe și legume",
-    "validUntil": "2026-11-15"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Rodii",
-    "price": 2.99,
-    "category": "Fructe și legume",
-    "validUntil": "2026-11-15"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Roșii cherry",
-    "price": 8.99,
-    "category": "Fructe și legume",
-    "validUntil": "2026-11-15"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Somon în foietaj",
-    "price": 39.99,
+    "title": "Șuncă de porc cu crustă",
+    "price": 9.99,
     "category": "Alimente",
-    "validUntil": "2026-11-15"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Tocană de legume",
-    "price": 2.89,
-    "category": "Alimente",
-    "validUntil": "2026-11-15"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Unt cu trufe / fulgi de chilli",
-    "price": 8.99,
-    "category": "Alimente",
-    "validUntil": "2026-11-15"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Țelină",
-    "price": 3.99,
-    "category": "Fructe și legume",
-    "validUntil": "2026-11-15"
+    "validUntil": "2026-11-22"
   },
   {
     "storeName": "Penny",
