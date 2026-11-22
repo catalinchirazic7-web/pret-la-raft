@@ -1,108 +1,94 @@
 [
   {
     "storeName": "Lidl",
-    "title": "Bere blondă",
-    "price": 2.29,
+    "title": "Banane",
+    "price": 4.99,
     "category": "Alimente",
-    "validUntil": "2026-11-22"
+    "validUntil": "2026-11-29"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Bere blondă",
+    "price": 22.65,
+    "category": "Alimente",
+    "validUntil": "2026-11-29"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Bere blondă",
+    "price": 3.99,
+    "category": "Alimente",
+    "validUntil": "2026-11-29"
   },
   {
     "storeName": "Lidl",
     "title": "Bere blondă",
     "price": 1.99,
     "category": "Alimente",
-    "validUntil": "2026-11-22"
+    "validUntil": "2026-11-29"
   },
   {
     "storeName": "Lidl",
-    "title": "Bere blondă",
-    "price": 3.19,
+    "title": "Bile cu miere",
+    "price": 26.99,
     "category": "Alimente",
-    "validUntil": "2026-11-22"
+    "validUntil": "2026-11-29"
   },
   {
     "storeName": "Lidl",
-    "title": "Bere blondă",
-    "price": 7.79,
-    "category": "Alimente",
-    "validUntil": "2026-11-22"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Bere strong",
-    "price": 2.39,
-    "category": "Alimente",
-    "validUntil": "2026-11-22"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Brânză topită",
-    "price": 7.49,
-    "category": "Alimente",
-    "validUntil": "2026-11-22"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Cartofi pentru copt sau piure",
-    "price": 6.99,
-    "category": "Fructe și legume",
-    "validUntil": "2026-11-22"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Conservă din carne de porc, în suc propriu",
-    "price": 6.79,
-    "category": "Alimente",
-    "validUntil": "2026-11-22"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Crăciuniță",
-    "price": 18.99,
-    "category": "P+F",
-    "validUntil": "2026-11-22"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Iaurt cremos în stil grecesc",
-    "price": 3.99,
-    "category": "Alimente",
-    "validUntil": "2026-11-22"
-  },
-  {
-    "storeName": "Lidl",
-    "title": "Mango",
+    "title": "Lămâi",
     "price": 4.99,
     "category": "Fructe și legume",
-    "validUntil": "2026-11-22"
+    "validUntil": "2026-11-29"
   },
   {
     "storeName": "Lidl",
-    "title": "Mere roșii, bio",
-    "price": 6.99,
+    "title": "Mere golden",
+    "price": 2.99,
     "category": "Fructe și legume",
-    "validUntil": "2026-11-22"
+    "validUntil": "2026-11-29"
   },
   {
     "storeName": "Lidl",
-    "title": "Panzerotti umpluți cu creveți și crabi",
-    "price": 9.99,
+    "title": "Mini tarte",
+    "price": 19.99,
     "category": "Alimente",
-    "validUntil": "2026-11-22"
+    "validUntil": "2026-11-29"
   },
   {
     "storeName": "Lidl",
-    "title": "Sfeclă roșie",
-    "price": 1.59,
+    "title": "Ouă cu surpriză",
+    "price": 15.99,
+    "category": "Alimente",
+    "validUntil": "2026-11-29"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Pomelo",
+    "price": 6.49,
+    "category": "Alimente",
+    "validUntil": "2026-11-29"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Ridichi roșii",
+    "price": 1.49,
+    "category": "Alimente",
+    "validUntil": "2026-11-29"
+  },
+  {
+    "storeName": "Lidl",
+    "title": "Roșii bio",
+    "price": 11.99,
     "category": "Fructe și legume",
-    "validUntil": "2026-11-22"
+    "validUntil": "2026-11-29"
   },
   {
     "storeName": "Lidl",
-    "title": "Șuncă de porc cu crustă",
-    "price": 9.99,
+    "title": "Tiramisu cu pișcoturi",
+    "price": 16.99,
     "category": "Alimente",
-    "validUntil": "2026-11-22"
+    "validUntil": "2026-11-29"
   },
   {
     "storeName": "Penny",
