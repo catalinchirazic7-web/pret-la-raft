@@ -92,632 +92,639 @@
   },
   {
     "storeName": "Penny",
-    "title": "8ARDEALUL VEGETAL ROSII SI BUSUIOC 100G",
-    "price": 2.99,
-    "category": "Conserve carne si pate",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "ACTIMEL ACTIKIDS BANANA SPLIT 8X100G",
-    "price": 19.99,
+    "title": "*ACTIVIA MIC DEJUN",
+    "price": 4.19,
     "category": "Iaurt",
-    "validUntil": "2026-11-24"
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "ALPRO PRODUS FERMENTAT SOIA AFINE",
-    "price": 4.29,
-    "category": "Iaurt",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "ALPRO PRODUS FERMENTAT SOIA ZMEURA 150G",
-    "price": 4.29,
-    "category": "Iaurt",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "AMIGO CAFEA INSTANT",
-    "price": 16.99,
-    "category": "Cafea",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "ARDEALUL PATE VEGETAL",
-    "price": 2.99,
-    "category": "Conserve carne si pate",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "ARDEALUL PATE VEGETAL CU ARDEI",
-    "price": 2.99,
-    "category": "Conserve carne si pate",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "ARDEALUL PATE VEGETAL CU CEAPA VERDE",
-    "price": 2.99,
-    "category": "Conserve carne si pate",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "ARDEALUL PATE VEGETAL PICANT",
-    "price": 2.99,
-    "category": "Conserve carne si pate",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "BALLANTINE\"S WHISKY 40% ALC. + GARANTIE SGR 0.5LEI",
-    "price": 49.99,
-    "category": "Spirtoase",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "BONI DE TOT CASCAVAL DALIA",
-    "price": 32.99,
+    "title": "*BONI DE TOT CASCAVAL DALIA",
+    "price": 17.49,
     "category": "Cascaval",
-    "validUntil": "2026-11-24"
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "BONI DE TOT LAPTE UHT 3.5% GRASIME",
-    "price": 4.49,
-    "category": "Lapte proaspat si UHT",
-    "validUntil": "2026-11-24"
+    "title": "ACACIA CARBUNE GRATAR 3KG",
+    "price": 15.99,
+    "category": "Hobby, gratar si bricolaj",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "BUCEGI PATE DE PORC 20% FICAT",
-    "price": 2.89,
-    "category": "Conserve carne si pate",
-    "validUntil": "2026-11-24"
+    "title": "ANGELLI CHERRY VERMOUTH 14% ALC. 1L + GARANTIE SGR 0.5LEI",
+    "price": 33.99,
+    "category": "Spirtoase",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "BUCEGI PATE DE PUI 20% FICAT",
-    "price": 2.89,
-    "category": "Conserve carne si pate",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "CASA GUSTULUI SUNCA PORC PRESATA",
-    "price": 11.99,
-    "category": "Sunca si alte specialitati",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "CG SALAM PORC VITA CRUD AF FELIAT",
-    "price": 4.99,
-    "category": "Salam si carnati",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "COLGATE EXTRA CLEAN PERIUTA DINTI",
-    "price": 4.99,
-    "category": "Ingrijire orala",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "COLGATE PASTA DINTI TRIPLE ACTION",
+    "title": "AZUGA BERE NEPASTEURIZATA 5.5%ALC. + GARANTIE SGR 0.5LEI",
     "price": 6.99,
-    "category": "Ingrijire orala",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "CROCO BREZEL SARE",
-    "price": 3.49,
-    "category": "Covrigei,pufuleti si mixuri",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "CROCO PETIT BEURRE",
-    "price": 2.19,
-    "category": "Biscuiti, fursecuri, prajituri",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "CROISSANT CU UNT 28% 55G LA LORRAINE SRL",
-    "price": 1.29,
-    "category": "Patiserie",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "DALLMAYR CAFEA CLASIC INTENSE",
-    "price": 29.99,
-    "category": "Cafea",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "DANONE IAURT IN STIL GRECESC 7% GRASIME 920G",
-    "price": 13.99,
-    "category": "Iaurt",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "DORADA ROSIE 300/500 KG",
-    "price": 39990.0,
-    "category": "Peste",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "DORADA ROSIE 500/800 KG",
-    "price": 39990.0,
-    "category": "Peste",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "FAGARAS BATON CU 82% UMPL. STAFIDE SI ROM GLAZURA CACAO",
-    "price": 1.99,
-    "category": "Batoane ciocolata",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "FILE DE COD (270 GR)+FASOLE VERDE PASTAI(350 GR)",
-    "price": 34.99,
-    "category": "Semipreparate",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "FILE DE COD (270 GR)+MIX LEGUME(350 GR)",
-    "price": 36.99,
-    "category": "Semipreparate",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "FILE MERLUCIU(310 GR)+FASOLE VERDE PASTAI(350 GR)",
-    "price": 34.99,
-    "category": "Semipreparate",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "FILE MERLUCIU(310 GR)+MIX LEGUME(350 GR)",
-    "price": 36.99,
-    "category": "Semipreparate",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "FRESCOVERDE AMESTEC LEGUME PENTRU TIGAIE",
-    "price": 4.49,
-    "category": "Legume si fructe",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "GILLETTE APARAT DE RAS BLUE 3 COMFORT",
-    "price": 14.79,
-    "category": "Produse pentru barbierit",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "GILLETTE APARAT RAS BLUE 3COMF",
-    "price": 14.79,
-    "category": "Produse pentru barbierit",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "GILLETTE BLUE3 COMFORT 3+1 APARAT RAS",
-    "price": 14.79,
-    "category": "Produse pentru barbierit",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "GOLDEN BRAU BERE BLONDA6X500ML5%ALC5+1 + GARANTIE SGR 0.5LEIX6BUC",
-    "price": 17.99,
     "category": "Bere blonda si bruna",
-    "validUntil": "2026-11-24"
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "GRAN MARE FILE DE MACROU IN SOS TOMAT GREUTATE MASA NETA SCURSA 85GR",
-    "price": 5.49,
-    "category": "Conserve peste",
-    "validUntil": "2026-11-24"
+    "title": "BARON DELICADORE CIOCOLATA CU LAPTE 4 SORTIMENTE",
+    "price": 11.29,
+    "category": "Praline si bomboane",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "HANUL BOIERESC COVRIGEI CU TARATE DE GRAU",
-    "price": 2.19,
-    "category": "Covrigei,pufuleti si mixuri",
-    "validUntil": "2026-11-24"
+    "title": "BERGENBIER BERE BLONDA 5% ALC. + GARANTIE SGR 0.5LEI",
+    "price": 8.99,
+    "category": "Bere blonda si bruna",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "HOCHLAND CHEEZ ON SOS CU CHEDDAR",
-    "price": 9.99,
-    "category": "Crema de branza, specialitati",
-    "validUntil": "2026-11-24"
+    "title": "BONI DE TOT URDA 400G",
+    "price": 8.49,
+    "category": "Telemea",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "HOCHLAND CREME CLASIC",
-    "price": 7.69,
-    "category": "Crema de branza, specialitati",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "LINCO PATISERO FOI FINE DE PLACINTA",
-    "price": 5.89,
-    "category": "Patiserie congelata",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "MANDY PASTA VEGETALA",
-    "price": 4.99,
+    "title": "BUCEGI PASTA VEGETALA CU ARDEI TARTINABILA",
+    "price": 1.09,
     "category": "Conserve carne si pate",
-    "validUntil": "2026-11-24"
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "MATACHE MACELARU MUSCHI FILE",
-    "price": 6.99,
+    "title": "BUSUIOACA VIN ROSE DEMIDULCE + GARANTIE SGR 0.5LEI",
+    "price": 10.99,
+    "category": "Vin",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "CERVUS VIN ALB DMS 3l",
+    "price": 34.99,
+    "category": "Vin",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "COMTIM CARNATI DE PORC TARANESTI 500G",
+    "price": 12.49,
+    "category": "Carne proaspata porc si vita",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "CRISTIM MUSCHI AZUGA, FELIAT",
+    "price": 4.49,
     "category": "Sunca si alte specialitati",
-    "validUntil": "2026-11-24"
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "MOGYI SEMINTE DOVLEAC DECOJITE PRAJITE",
-    "price": 4.89,
-    "category": "Alune si seminte",
-    "validUntil": "2026-11-24"
+    "title": "CROCO CRACKERS SARE",
+    "price": 6.99,
+    "category": "Covrigei,pufuleti si mixuri",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "MPK 6+2 CVL IAURT CREMOS 5% 8x140G",
-    "price": 11.99,
+    "title": "DANONE MIX DELICIOS CAPSUNI CAISE",
+    "price": 5.49,
     "category": "Iaurt",
-    "validUntil": "2026-11-24"
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "NESCAFE DG. CAPS ESPRESSO INT.",
-    "price": 44.99,
-    "category": "Cafea",
-    "validUntil": "2026-11-24"
+    "title": "DAYSEADAY CREVETI CRUZI 16/20",
+    "price": 27.99,
+    "category": "Peste",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "NESCAFE DOLCE GUSTO CAPSULE CAFE AU LAIT 30 CAPS 300G",
-    "price": 44.99,
-    "category": "Cafea",
-    "validUntil": "2026-11-24"
+    "title": "DAYSEADAY FILE PANGASIUS",
+    "price": 10.99,
+    "category": "Peste",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "NESCAFE DOLCE GUSTO CORTADO ESPRESSO MACCHIATO 30 CAPS 189G",
-    "price": 44.99,
-    "category": "Cafea",
-    "validUntil": "2026-11-24"
+    "title": "FAIRY DETERGENT DE VASE LEMON",
+    "price": 6.49,
+    "category": "Detergent vase",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "OCEAN FISH SOMON AFUMAT FILE 100G",
-    "price": 9.99,
+    "title": "FILE PASTRAV SOMONAT INTREG KG",
+    "price": 69900.0,
     "category": "Peste si icre",
-    "validUntil": "2026-11-24"
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "PALMOLIVE GEL DUS DIVERSE SORTIMENTE",
-    "price": 11.99,
-    "category": "Gel de dus",
-    "validUntil": "2026-11-24"
+    "title": "FLORENTINO BAUTURA ALCOOLICA VISINE 16% ALC. + GARANTIE SGR 0.5LEI",
+    "price": 15.99,
+    "category": "Spirtoase",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "PANZANI MALAI EXPRESS PENTRU MAMALIGA RAPID 500G",
-    "price": 4.99,
-    "category": "Faina, malai, gris",
-    "validUntil": "2026-11-24"
+    "title": "GOOD MILK IAURT BAUT DEGR SUC FRUCTE SI AROMA",
+    "price": 4.69,
+    "category": "Iaurt",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "PENNY FASOLE VERDE TAIATA",
-    "price": 7.49,
+    "title": "GRADINA PADURII ZMEURA CONGELATA",
+    "price": 14.39,
     "category": "Legume si fructe",
-    "validUntil": "2026-11-24"
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "PULPE INTREGI DE PUI KG",
-    "price": 9900.0,
-    "category": "Carne proaspata pui si curcan",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "RAVIOLI CU RICOTTA,COAJA LAM.&PIP250G",
-    "price": 8.99,
-    "category": "Gata preparate",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "ROSHEN CIOCOLATA AERATA CARAMEL",
-    "price": 4.99,
-    "category": "Tablete ciocolata",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "ROSHEN CIOCOLATA CU LAPTE AERATA",
-    "price": 4.99,
-    "category": "Tablete ciocolata",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "ROSHEN CIOCOLATA NEAGRA AERATA",
-    "price": 4.99,
-    "category": "Tablete ciocolata",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "ROUA FASOLE ALBA IN SARAMURA GREUTATE MASA SCURSA NETA 400GR",
-    "price": 4.99,
-    "category": "Conserve legume",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SAN FABIO PASTE GRAU DUR PENNE",
-    "price": 2.99,
-    "category": "Paste fainoase",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SAN FABIO SOS DE ROSII CLASIC",
-    "price": 5.49,
-    "category": "Pasta de rosii, bulion",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION BISCUITI CU NUCI SI MIGDALE",
-    "price": 13.99,
-    "category": "Biscuiti, fursecuri, prajituri",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION BISCUITI CUTIE MIX",
-    "price": 31.99,
-    "category": "Biscuiti, fursecuri, prajituri",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION CARAMELE CU CONDIMENTE",
-    "price": 5.99,
-    "category": "Drajeuri, jeleuri si caramele",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION CEAI FRUCTE DIVERSE SORTIMENTE PLIC PIRAMIDA 2.5X15G",
-    "price": 9.99,
-    "category": "Ceai, cacao",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION CHIPSURI CU TRUFE",
-    "price": 8.99,
-    "category": "Chipsuri",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION CIOC. AMARUIE 50% CACAO 100G",
-    "price": 8.99,
-    "category": "Tablete ciocolata",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION GIRASOLI CU BURRATA SI ROSII COAPTE",
-    "price": 8.99,
-    "category": "Gata preparate",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION GNOCCHI TRIOCOLOR",
-    "price": 5.99,
-    "category": "Paste fainoase",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION MACARONS 72G",
-    "price": 12.99,
-    "category": "Biscuiti, fursecuri, prajituri",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION PASTE UMPLUTE CU BRANZA RICOTTA SI SUNCA",
-    "price": 6.99,
-    "category": "Gata preparate",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION PROSCIUTTO SAN DANIELE",
-    "price": 16.29,
-    "category": "Sunca si alte specialitati",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION RAVIOLI FORMAGGI&RUCOLA",
-    "price": 6.59,
-    "category": "Gata preparate",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION RICCOLINE PRODUS TRADITIONAL ITALIENESC DE PATISERIE",
-    "price": 14.29,
-    "category": "Biscuiti, fursecuri, prajituri",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION SALAM CACCIATORE",
-    "price": 16.29,
-    "category": "Salam si carnati",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION SALAM CU FENICUL",
-    "price": 12.19,
-    "category": "Salam si carnati",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION SALAM CU TRUFE CU TRUFE",
-    "price": 12.99,
-    "category": "Salam si carnati",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SELECTION TORTELLONI RICOTTA&TARTUFO",
-    "price": 6.59,
-    "category": "Gata preparate",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SILAN BALSAM RUFE FRESH SKY 130 SPALARI",
-    "price": 24.99,
-    "category": "Detergent, balsam si inalbitor",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SILAN BALSAM RUFE SENSITIVE 130 SPALARI",
-    "price": 24.99,
-    "category": "Detergent, balsam si inalbitor",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SILVA BERE NR.7%ALC.6X500ML5+1 + GARANTIE SGR 0.5LEIX6BUC",
-    "price": 24.99,
-    "category": "Bere blonda si bruna",
-    "validUntil": "2026-11-24"
-  },
-  {
-    "storeName": "Penny",
-    "title": "SNACK VEGETAL",
+    "title": "HANUL BOIERESC CORNULETE CU GEM",
     "price": 7.99,
-    "category": "Salam si carnati",
-    "validUntil": "2026-11-24"
+    "category": "Biscuiti, fursecuri, prajituri",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "STAR POPCORN FLORICELE DE PORUMB CU GUST DE CASCAVAL",
-    "price": 3.99,
-    "category": "Popcorn",
-    "validUntil": "2026-11-24"
+    "title": "HANUL BOIERESC COVRIGEI CU MAC SI SARE",
+    "price": 2.19,
+    "category": "Covrigei,pufuleti si mixuri",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "STRONGBOW CIDRU GOLD APPLE 4,5% ALCOOL + GARANTIE SGR 0.5LEI",
-    "price": 3.99,
-    "category": "Cidru",
-    "validUntil": "2026-11-24"
+    "title": "HANUL BOIERESC HALVITA CU ARAHIDE",
+    "price": 2.39,
+    "category": "Napolitane si nuga",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "STRONGBOW CIDRU RED BERRIES 4.5% ALC. + GARANTIE SGR 0.5LEI",
-    "price": 3.99,
-    "category": "Cidru",
-    "validUntil": "2026-11-24"
+    "title": "HANUL BOIERESC MURATURI ASORTATE GREUTATE MASA NETA SCURSA 860GR",
+    "price": 23.99,
+    "category": "Muraturi",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "SUGUS BOMBOANE GUMATE MOI CU CASPUNI LAMAIE PORTO.",
+    "title": "HANUL BOIERESC NUGA ARAHIDE",
+    "price": 1.79,
+    "category": "Napolitane si nuga",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "HANUL BOIERESC NUGA NUCA",
+    "price": 1.79,
+    "category": "Napolitane si nuga",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "HANUL BOIERESC SOS DE MAIONEZA",
+    "price": 7.49,
+    "category": "Sosuri",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "HB MIERE POLIFLORA",
+    "price": 16.99,
+    "category": "Zahar si miere",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "HB ROSII TOCATE",
     "price": 4.49,
-    "category": "Drajeuri, jeleuri si caramele",
-    "validUntil": "2026-11-24"
+    "category": "Pasta de rosii, bulion",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "TAKIS BLUE HEAT SNACK PORUMB CU AROMA CHILLI SI LIME",
+    "title": "HB SOS DE MAIONEZA CU USTUROI",
+    "price": 7.49,
+    "category": "Sosuri",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "HEAD&SHOULDERS SAMPON DIVERSE SORTIMENTE",
+    "price": 23.89,
+    "category": "Sampon si balsam",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "HOCHLAND CASCAVAL FELII CLASIC 280G",
+    "price": 14.99,
+    "category": "Cascaval",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "HULALA PREPARAT PE BAZA VEGETALA",
+    "price": 11.99,
+    "category": "Lapte condensat si frisca",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "JARDINELLE MASLINE NEGRE FARA SAMBURI 340G GREUTATE MASA NETA SCURSA 150GR",
+    "price": 4.69,
+    "category": "Masline",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "JOHNNIE WALKER RED LABEL WHISKY 700ml 40% ALCOOL .+GARANTIE SGR 0.50 LEI",
+    "price": 59.99,
+    "category": "Spirtoase",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "LA DORNA SMANTANA DE GATIT 32% GRASIME",
+    "price": 7.99,
+    "category": "Lapte condensat si frisca",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "LAVAZZA CAFEA MACINATA CREMA E GUSTO",
+    "price": 22.99,
+    "category": "Cafea",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "LINCO APETIT GRASIME TARTINABILA",
+    "price": 4.89,
+    "category": "Unt si margarina",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "LOTTO ARAHIDE SNACK CU ARAHID",
+    "price": 2.99,
+    "category": "Covrigei,pufuleti si mixuri",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "LOTTO GOLD SNACK DIN PORUMB",
+    "price": 2.99,
+    "category": "Covrigei,pufuleti si mixuri",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "LOTTO MONSTERS SNACK CU GUST DE ROSII",
+    "price": 2.99,
+    "category": "Covrigei,pufuleti si mixuri",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "LOTTO STICKS SNACK CU BRANZA",
+    "price": 2.99,
+    "category": "Covrigei,pufuleti si mixuri",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "MATACHE MACELARU\"CARNATI OLTENESTI",
+    "price": 8.59,
+    "category": "Salam si carnati",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "MELC CREMA VANILIE SI STAFIDE LA LORRAINE SRL",
+    "price": 1.25,
+    "category": "Patiserie",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "MERCI ROSU BOMBOANE CIOCO ASORTATE",
+    "price": 20.99,
+    "category": "Praline si bomboane",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "MILKA BISCUITI CREMA CIOCOLATA",
+    "price": 9.59,
+    "category": "Biscuiti, fursecuri, prajituri",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "MILKERIA EDAM FELII 200G",
+    "price": 6.99,
+    "category": "Cascaval",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "MIX ARIPI SECTIONATE SI PULPE INFERIOARE",
+    "price": 14990.0,
+    "category": "Carne proaspata pui si curcan",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "MM JAMBON CURCAN",
+    "price": 8.19,
+    "category": "Sunca si alte specialitati",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "MULLER AYRAN",
+    "price": 5.49,
+    "category": "Lapte batut, sana si chefir",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "NESTLE CEREALE NESQUIK",
+    "price": 13.99,
+    "category": "Cereale, musli si fulgi",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "OCEAN FISH FILE DE SOMON SALBATIC",
+    "price": 5.77,
+    "category": "Peste",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "PELIN CARPATIN ALB +GARANTIE SGR 0.50 LEI",
+    "price": 13.99,
+    "category": "Vin",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "PELIN CARPATIN ROSE +GARANTIE SGR 0.50 LEI",
+    "price": 13.99,
+    "category": "Vin",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "PENTRU TINE DE LA PENNY MUSTAR",
+    "price": 4.49,
+    "category": "Mustar si ketchup",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "PENTRU TINE DE LA PENNY RULADA CU CREMA DE CACAO",
+    "price": 4.99,
+    "category": "Biscuiti, fursecuri, prajituri",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "PENTRU TINE DE LA PENNY RULADA CU CREMA DE CAPSUNI",
+    "price": 4.99,
+    "category": "Biscuiti, fursecuri, prajituri",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "PENTRU TINE DE LA PENNY RULADA CU CREMA DE VANILIE",
+    "price": 4.99,
+    "category": "Biscuiti, fursecuri, prajituri",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "PERLA HARGHITEI APA MINERALA CARBOGAZIFICATA + GARANTIE SGR 0.5LEI",
+    "price": 3.19,
+    "category": "Apa",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "PT TINE DE LA PENNY SEMINTE NEGRE DE FLOAREA SOARELUI PRAJITE SI SARATE",
+    "price": 5.49,
+    "category": "Alune si seminte",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "PUFINA HARTIE IG.PORT&SCORT. 4STR 8ROLE",
+    "price": 13.99,
+    "category": "Hartie igienica",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "RIO MARE PATE DE TON",
+    "price": 9.99,
+    "category": "Conserve peste",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "RUSTY CARTOFI CONGELATI ONDULATI",
+    "price": 6.99,
+    "category": "Legume si fructe",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "SALBAC SALAM SIBIU 300g",
+    "price": 25.99,
+    "category": "Salam si carnati",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "SALTO CHIPSURI DIN PORUMB DIVERSE SORTIMENTE SARE/ CASCAVAL 200G",
+    "price": 3.99,
+    "category": "Chipsuri",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "SALTO SOS PENTRU TORTILLA CU BRANZA",
     "price": 5.99,
     "category": "Chipsuri",
-    "validUntil": "2026-11-24"
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "TYMBARK SUC MERE SI VISINE + GARANTIE SGR 0.5LEI",
-    "price": 3.19,
+    "title": "SALTO SOS PENTRU TORTILLA HOT SALSA",
+    "price": 5.99,
+    "category": "Chipsuri",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "SALTO SOS PENTRU TORTILLA MILD SALSA 310G",
+    "price": 5.99,
+    "category": "Chipsuri",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "SALTO SOS TORTILLA DIVERSE SORTIMENTE BRANZA/ HOT SALSA/ MILD SALSA",
+    "price": 5.99,
+    "category": "Chipsuri",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "SAN FABIO PIURE DE ROSII",
+    "price": 0.67,
+    "category": "Pasta de rosii, bulion",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "SAN FABIO PRODUS DE COFETARIE CU AROMA DE TIRAMISU",
+    "price": 9.99,
+    "category": "Biscuiti, fursecuri, prajituri",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "SANCHO PAELLA CU CREVETI, MIDII SI PUI",
+    "price": 8.99,
+    "category": "Semipreparate",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "SCHAUMA SAMPON PAR DIVERSE SORTIMENTE",
+    "price": 12.99,
+    "category": "Sampon si balsam",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "SEGAFREDO ESPRESSO CASA CAFEA BOABE",
+    "price": 39.99,
+    "category": "Cafea",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "SEGAFREDO INTERMEZZO CAFEA MACINATA",
+    "price": 18.99,
+    "category": "Cafea",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "SEGAFREDO PASSIONE ESPRESSO INTENSO CAFEA BOABE",
+    "price": 69.99,
+    "category": "Cafea",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "SEGAFREDO SELEZIONE ESPRESSO FORTE E INTENSO CAFEA BOABE",
+    "price": 69.99,
+    "category": "Cafea",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "SPORNIC ULEI FL.SOARELUI",
+    "price": 8.39,
+    "category": "Ulei si otet",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "TABULA LIGNA KABANOSSI STICKS BRA&CHILI 120G",
+    "price": 6.99,
+    "category": "Salam si carnati",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "TABULA LIGNA KABANOSSI STICKS CLASIC & PORC 120G",
+    "price": 6.99,
+    "category": "Salam si carnati",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "TABULA LIGNA SUNCA DE PORC FIARTA",
+    "price": 5.99,
+    "category": "Sunca si alte specialitati",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "TABULA LIGNA SUNCA KASSELER AFUMATA",
+    "price": 5.99,
+    "category": "Sunca si alte specialitati",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "TABULA LIGNA SUNCA KASSELER CU PAPRIKA",
+    "price": 5.99,
+    "category": "Sunca si alte specialitati",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "TEDI SUC PIERSICA MORCOV MAR + GARANTIE SGR 0.5LEI",
+    "price": 5.99,
     "category": "Sucuri necarbogazoase",
-    "validUntil": "2026-11-24"
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "ZAREA FLORENTINO LAMBRUSCO EMILIA IGT 8% ALC 750ML .+ GARANTIE SGR 0.50 RON",
-    "price": 19.99,
-    "category": "Sampanie, prosecco",
-    "validUntil": "2026-11-24"
+    "title": "TIGAIE ADANCA 24CM",
+    "price": 49.99,
+    "category": "Unica folosinta si menaj",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "ZAREA HUGO 750ML 0.0%ALCOOL CU SUC DE MENTA,LAMAIE SI SOC+GARANTIE SGR 0.50LEI",
-    "price": 19.99,
-    "category": "Sampanie, prosecco",
-    "validUntil": "2026-11-24"
+    "title": "TIGAIE ADANCA 28CM",
+    "price": 59.99,
+    "category": "Unica folosinta si menaj",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
-    "title": "ZAREA SEX ON THE BEACH 750ML 0.0%ALC COCKT. EFER .SUC,PORTO,PIERSICI,MERISO+GARANTIE SGR 0.50BANI",
-    "price": 19.99,
-    "category": "Sampanie, prosecco",
-    "validUntil": "2026-11-24"
+    "title": "TOCATOR BAMBUS 20X30CM",
+    "price": 11.99,
+    "category": "Unica folosinta si menaj",
+    "validUntil": "2026-12-01"
+  },
+  {
+    "storeName": "Penny",
+    "title": "ZAREA 5* BAUTURA SPIRTOASA 37,5% ALC. + GARANTIE SGR 0.5LEI",
+    "price": 31.99,
+    "category": "Spirtoase",
+    "validUntil": "2026-12-01"
   },
   {
     "storeName": "Penny",
     "title": "ZUZU IAURT NATURAL 3% GRASIME",
-    "price": 1.59,
+    "price": 3.99,
     "category": "Iaurt",
-    "validUntil": "2026-11-24"
+    "validUntil": "2026-12-01"
   }
 ]
